@@ -21,6 +21,9 @@ const Bookshelf = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(newBook)
+        setBooks({...books, newBook})
+        setNewBook({title: "", author: ""})
     }
 
     return  (
@@ -35,10 +38,24 @@ const Bookshelf = () => {
                         name='title'
                         onChange={handleInputChange}
                     ></input>
-                    <button type='submit' onc>Add book</button>
+                    <label htmlFor="author">Author</label>
+                    <input 
+                        id='author'
+                        name='author'
+                        onChange={handleInputChange}
+                    ></input>
+                    <button type='submit'>Add book</button>
                 </form>
             </div>
-            <div className="bookCardsDiv">{/* Book cards will display here */}</div>
+
+            <div className="bookCardsDiv">{/* Book cards will display here */}
+                {books.map(book =>
+                    <>
+                        <p>Title: {book.title}</p>
+                        <p>Author: {book.author}</p>
+                    </>
+                )}
+            </div>
         </div>
     )
 }
